@@ -11,37 +11,6 @@ TextCallback = Callable[[str], None]
 Strategy = Tuple[MobileBy, str]
 
 
-class Error(Exception):
-    """Base class for exceptions in this module."""
-    pass
-
-
-class PageObjectNotFound(Error):
-    """Exception raised for errors in the input.
-
-    Attributes:
-        expression -- input expression in which the error occurred
-        message -- explanation of the error
-    """
-
-    def __init__(self, expression):
-        self.expression = expression
-        self.message = f"Wasn't able to find WebElement using _identifier, _name, _classname, or _custom"
-
-
-class MissingParam(Error):
-    """Exception raised for errors in the input.
-
-    Attributes:
-        expression -- input expression in which the error occurred
-        message -- explanation of the error
-    """
-
-    def __init__(self, expression):
-        self.expression = expression
-        self.message = "Expected _identifier, _name, or _class_name"
-
-
 class Page:
     """Base class for PageObjects.
 

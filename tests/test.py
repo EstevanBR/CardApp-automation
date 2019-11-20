@@ -1,19 +1,23 @@
 import pytest
-from page.page import PageObjectNotFound
+from appium.webdriver.webdriver import WebDriver
 from pages.card_page import CardPage
 from pages.questions_page import QuestionsPage
 from pages.answer_cell_page import AnswerCellPage
 from report.report import Report
 
 
+@pytest.fixture(scope="module", autouse=True)
+def noReset() -> bool:
+    return False
+
+
+@pytest.fixture(scope="function", autouse=True)
+def setup(driver: WebDriver):
+    driver.reset()
+
+
 @pytest.mark.ios
 class TestCardPage:
-    @pytest.fixture(scope="function", autouse=True)
-    def setup(self):
-        try:
-            QuestionsPage()
-        except PageObjectNotFound:
-            CardPage().dismiss_via_swipe()
 
     def test_get_card_page(self):
         (
@@ -40,7 +44,9 @@ class TestCardPage:
             QuestionsPage()
             .tap_answer_cell()
             .get_question_text(
-                lambda text: report.soft_assert("?" in text, "HW-000", "Questions should have a '?'")
+                lambda text: report.soft_assert(
+                    "?" in text, "HW-000", "Questions should have a '?'"
+                )
             ).dismiss_via_swipe()
         )
         assert QuestionsPage()

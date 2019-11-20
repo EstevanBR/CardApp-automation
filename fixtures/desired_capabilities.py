@@ -4,12 +4,40 @@ from _pytest.config import Config
 
 
 def pytest_addoption(parser):
-    parser.addoption("--deviceName", dest="deviceName", action="store", required=True)
-    parser.addoption("--udid", dest="udid", action="store", required=True)
-    parser.addoption("--platformVersion", dest="platformVersion", action="store", required=True)
-    parser.addoption("--wdaLocalPort", dest="wdaLocalPort", action="store", required=True)
-    parser.addoption("--app", type="string", dest="app", action="store", required=False, default="/Users/ehernandez/Desktop/Build/Products/Debug-iphonesimulator/Card.app/")
-    parser.addoption("--derivedDataPath", type="string", dest="derivedDataPath", action="store", required=False, default="/Users/ehernandez/Library/Developer/Xcode/DerivedData/WebDriverAgent-ciegwgvxzxdrqthilmrmczmqvrgu")
+    parser.addoption(
+        "--deviceName",
+        dest="deviceName",
+        action="store",
+        required=True)
+    parser.addoption(
+        "--udid",
+        dest="udid",
+        action="store",
+        required=True)
+    parser.addoption(
+        "--platformVersion",
+        dest="platformVersion",
+        action="store",
+        required=True)
+    parser.addoption(
+        "--wdaLocalPort",
+        dest="wdaLocalPort",
+        action="store",
+        required=True)
+    parser.addoption(
+        "--app",
+        type="string",
+        dest="app",
+        action="store",
+        required=False,
+        default="/Users/ehernandez/Desktop/Build/Products/Debug-iphonesimulator/Card.app/")
+    parser.addoption(
+        "--derivedDataPath",
+        type="string",
+        dest="derivedDataPath",
+        action="store",
+        required=False,
+        default="/Users/ehernandez/Library/Developer/Xcode/DerivedData/WebDriverAgent-ciegwgvxzxdrqthilmrmczmqvrgu")
 
 
 @pytest.fixture(scope="module", autouse=False)

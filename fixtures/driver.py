@@ -28,8 +28,19 @@ def driver_setup(driver: WebDriver) -> None:
     logging.debug(f"starting driver session")
 
     driver.terminate_app(driver.desired_capabilities["bundleId"])
-    driver.execute_script("mobile: launchApp", {"bundleId": driver.desired_capabilities["bundleId"], "arguments": driver.desired_capabilities["processArguments"]["args"]})
-    driver.execute_script("mobile: activateApp", {"bundleId": driver.desired_capabilities["bundleId"]})
+    driver.execute_script(
+        "mobile: launchApp",
+        {
+            "bundleId": driver.desired_capabilities["bundleId"],
+            "arguments": driver.desired_capabilities["processArguments"]["args"]
+        }
+    )
+    driver.execute_script(
+        "mobile: activateApp",
+        {
+            "bundleId": driver.desired_capabilities["bundleId"]
+        }
+    )
 
 
 @pytest.fixture(scope="module", autouse=True)

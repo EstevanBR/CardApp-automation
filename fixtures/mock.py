@@ -20,9 +20,10 @@ def mock(pytestconfig) -> None:
     Page.inject_driver = MagicMock()
     Page.__driver = MagicMock()
     Page._Page__driver = MagicMock()
+    WebDriver.reset = MagicMock()
     Page._element = MagicMock()
     Page._element.click = MagicMock()
-    Page.find_element = MagicMock()
+    WebDriver.find_element = MagicMock()
 
     Report.passed = MagicMock(return_value=True)
     Report.finalize = MagicMock()
