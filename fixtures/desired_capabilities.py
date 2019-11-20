@@ -50,28 +50,13 @@ def fullReset() -> bool:
     return False
 
 
-class DesiredCapabilities(dict):
-    bundleId: str
-    app: str
-    deviceName: str
-    udid: str
-    platformVersion: str
-    wdaLocalPort: str
-    platformName: str
-    noReset: bool
-    fullReset: bool
-    newCommandTimeout: int
-    autoLaunch: bool
-    autoAcceptAlerts: bool
-    derivedDataPath: str
-    processArguments: dict
-
-    def __init__(self):
-        pass
+@pytest.fixture(scope="module", autouse=False)
+def autoLaunch() -> bool:
+    return False
 
 
 @pytest.fixture(scope="module", autouse=False)
-def desired_capabilities(noReset: bool, fullReset: bool, pytestconfig: Config) -> dict:
+def desired_capabilities(noReset: bool, fullReset: bool, autoLaunch: bool, pytestconfig: Config) -> dict:
     desired_capabilities = {
         "bundleId": "com.toiletsnakes.Card",
         "app": pytestconfig.option.app,
@@ -83,7 +68,7 @@ def desired_capabilities(noReset: bool, fullReset: bool, pytestconfig: Config) -
         "noReset": noReset,
         "fullReset": fullReset,
         "newCommandTimeout": 60,
-        "autoLaunch": False,
+        "autoLaunch": autoLaunch,
         "autoAcceptAlerts": True,
         "derivedDataPath": pytestconfig.option.derivedDataPath,
         "processArguments": {

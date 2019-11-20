@@ -5,7 +5,7 @@ from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver import Proxy
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def driver(mock, desired_capabilities: dict) -> WebDriver:
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
@@ -23,7 +23,7 @@ def driver(mock, desired_capabilities: dict) -> WebDriver:
     return driver
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def driver_setup(driver: WebDriver) -> None:
     logging.debug(f"starting driver session")
 
@@ -43,7 +43,7 @@ def driver_setup(driver: WebDriver) -> None:
     )
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="module", autouse=False)
 def driver_teardown(driver: WebDriver) -> None:
     yield None
     logging.debug(f"ending driver session")

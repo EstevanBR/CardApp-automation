@@ -11,6 +11,11 @@ def noReset() -> bool:
     return False
 
 
+@pytest.fixture(scope="module", autouse=False)
+def autoLaunch() -> bool:
+    return True
+
+
 @pytest.fixture(scope="function", autouse=True)
 def setup(driver: WebDriver):
     driver.reset()
