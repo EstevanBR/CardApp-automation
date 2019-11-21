@@ -65,6 +65,7 @@ class TestCardPage:
             .sleep(3)
             .tap_record_button()
             .tap_play_button()
+            # .tap_default()
             .sleep(4)
             .dismiss_via_swipe()
         )
@@ -89,6 +90,9 @@ class TestCardPage:
     def test_tap_question_cell(self):
         (
             QuestionsPage()
+            .tap_answer_cell()
+            .tap_complete_card_button()
+            .dismiss_via_swipe()
             .get_question_cell()
             .tap()
         )

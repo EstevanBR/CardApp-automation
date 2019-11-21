@@ -6,11 +6,11 @@ from appium.webdriver.webelement import WebElement
 
 class QuestionsPage(Page):
     @property
-    def __view(self) -> WebElement:
+    def _view(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "QuestionsTableViewController.view"))
 
     def __init__(self):
-        assert self.__view.is_displayed()
+        assert self._view.is_displayed()
 
     def tap_answer_cell(self) -> AnswerCellPage:
         from pages.card_page import CardPage

@@ -1,67 +1,73 @@
 from __future__ import annotations
 from page.page import Page, TextCallback
+from xcui_element.xcui_element_types import XCUIElementType
 from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.webelement import WebElement
 
 
 class CardPage(Page):
     @property
-    def __view(self) -> WebElement:
+    def _view(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.view"))
 
+    # @property
+    # def _microphone_access_alert(self) -> WebElement:
+    #     return Page.find_element((MobileBy.CLASS_NAME, XCUIElementType.Alert))
+
     @property
-    def __questionLabel(self) -> WebElement:
+    def _questionLabel(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.questionLabel"))
 
     @property
-    def __currentCardLabel(self) -> WebElement:
+    def _currentCardLabel(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.currentCardLabel"))
 
     @property
-    def __completedLabel(self) -> WebElement:
+    def _completedLabel(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.completedLabel"))
 
     @property
-    def __prevCardButton(self) -> WebElement:
+    def _prevCardButton(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.prevCardButton"))
 
     @property
-    def __nextCardButton(self) -> WebElement:
+    def _nextCardButton(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.nextCardButton"))
 
     @property
-    def __completeCardButton(self) -> WebElement:
+    def _completeCardButton(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.completeCardButton"))
 
     @property
-    def __recordButton(self) -> WebElement:
+    def _recordButton(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.recordButton"))
 
     @property
-    def __playButton(self) -> WebElement:
+    def _playButton(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.playButton"))
 
     def __init__(self):
-        assert self.__view.is_displayed()
+        assert self._view.is_displayed()
 
     def tap_record_button(self) -> CardPage:
-        self.__recordButton.click()
+        self._recordButton.click()
         return CardPage()
 
     def tap_complete_card_button(self) -> CardPage:
-        self.__completeCardButton.click()
+        self._completeCardButton.click()
         return CardPage()
 
     def get_record_button_text(self) -> CardPage:
-        self.__recordButton.text()
+        self._recordButton.text()
         return CardPage()
 
     def tap_play_button(self) -> CardPage:
-        self.__playButton.click()
+        # from pages.playback_alert_page import PlaybackAlertPage
+        self._playButton.click()
         return CardPage()
 
     def get_play_button_text(self) -> CardPage:
-        self.__playButton.text()
+        self._playButton.text()
         return CardPage()
 
     def dismiss_via_swipe(self) -> QuestionsPage:
@@ -71,5 +77,5 @@ class CardPage(Page):
         return QuestionsPage()
 
     def get_question_text(self, text_callback: TextCallback) -> CardPage:
-        text_callback(self.__questionLabel.text)
+        text_callback(self._questionLabel.text)
         return CardPage()
