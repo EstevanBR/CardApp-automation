@@ -20,13 +20,13 @@ class PlaybackAlertPage(Page):
     def __init__(self):
         assert self._title.is_displayed()
 
-    def tap_default(self) -> CardPage:
+    def tap_default_button(self) -> CardPage:
         from pages.card_page import CardPage
 
         self._sheet.find_element_by_name("Default").click()
         return CardPage()
 
-    def tap_speaker(self) -> CardPage:
+    def tap_speaker_button(self) -> CardPage:
         from pages.card_page import CardPage
 
         self._sheet.find_element_by_name("Speaker").click()

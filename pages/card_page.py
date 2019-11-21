@@ -57,10 +57,10 @@ class CardPage(Page):
         self._recordButton.text()
         return CardPage()
 
-    def tap_play_button(self) -> None:
-        # from pages.playback_alert_page import PlaybackAlertPage
+    def tap_play_button(self) -> PlaybackAlertPage:
+        from pages.playback_alert_page import PlaybackAlertPage
         self._playButton.click()
-        # return CardPage()
+        return PlaybackAlertPage()
 
     def get_play_button_text(self) -> CardPage:
         self._playButton.text()

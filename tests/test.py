@@ -65,9 +65,7 @@ class TestCardPage:
             .sleep(3)
             .tap_record_button()
             .tap_play_button()
-        )
-        (
-            CardPage()
+            .tap_default_button()
             .sleep(5)
             .dismiss_via_swipe()
         )
