@@ -16,7 +16,7 @@ def driver(mock, desired_capabilities: dict) -> WebDriver:
         direct_connection=True,
         keep_alive=True
     )
-    driver.implicitly_wait(4)
+    driver.implicitly_wait(3)
     logging.debug(
         f"created driver with desired_capabilities: {desired_capabilities}")
 

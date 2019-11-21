@@ -10,10 +10,6 @@ class CardPage(Page):
     def _view(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.view"))
 
-    # @property
-    # def _microphone_access_alert(self) -> WebElement:
-    #     return Page.find_element((MobileBy.CLASS_NAME, XCUIElementType.Alert))
-
     @property
     def _questionLabel(self) -> WebElement:
         return Page.find_element((MobileBy.ACCESSIBILITY_ID, "CardView.questionLabel"))
@@ -61,10 +57,10 @@ class CardPage(Page):
         self._recordButton.text()
         return CardPage()
 
-    def tap_play_button(self) -> CardPage:
+    def tap_play_button(self) -> None:
         # from pages.playback_alert_page import PlaybackAlertPage
         self._playButton.click()
-        return CardPage()
+        # return CardPage()
 
     def get_play_button_text(self) -> CardPage:
         self._playButton.text()

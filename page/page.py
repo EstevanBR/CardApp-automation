@@ -15,30 +15,30 @@ class Page:
     """Base class for PageObjects.
 
     Attributes:
-        __driver: Webdriver
+        _driver: Webdriver
     """
-    __driver: WebDriver
+    _driver: WebDriver
 
     @classmethod
     def inject_driver(cls, driver: WebDriver):
-        cls.__driver = driver
+        Page._driver = driver
 
     @classmethod
     def find_element(cls, strategy: Strategy) -> WebElement:
-        return Page.__driver.find_element(*strategy)
+        return Page._driver.find_element(*strategy)
 
     def sleep(self, duration: float):
         time.sleep(duration)
         return self
 
     def _swipe_down(self):
-        Page.__driver.execute_script("mobile: swipe", {"direction": "down"})
+        Page._driver.execute_script("mobile: swipe", {"direction": "down"})
 
     def _swipe_up(self):
-        Page.__driver.execute_script("mobile: swipe", {"direction": "up"})
+        Page._driver.execute_script("mobile: swipe", {"direction": "up"})
 
     def _swipe_left(self):
-        Page.__driver.execute_script("mobile: swipe", {"direction": "left"})
+        Page._driver.execute_script("mobile: swipe", {"direction": "left"})
 
     def _swipe_right(self):
-        Page.__driver.execute_script("mobile: swipe", {"direction": "right"})
+        Page._driver.execute_script("mobile: swipe", {"direction": "right"})

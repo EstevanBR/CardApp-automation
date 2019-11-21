@@ -8,7 +8,7 @@ from report.report import Report
 
 @pytest.fixture(scope="module", autouse=True)
 def noReset() -> bool:
-    return False
+    return True
 
 
 @pytest.fixture(scope="module", autouse=False)
@@ -65,8 +65,10 @@ class TestCardPage:
             .sleep(3)
             .tap_record_button()
             .tap_play_button()
-            # .tap_default()
-            .sleep(4)
+        )
+        (
+            CardPage()
+            .sleep(5)
             .dismiss_via_swipe()
         )
         assert QuestionsPage()

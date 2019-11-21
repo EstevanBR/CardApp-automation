@@ -54,13 +54,19 @@ def fullReset() -> bool:
 def autoLaunch() -> bool:
     return False
 
+
 @pytest.fixture(scope="module", autouse=False)
 def autoAcceptAlerts() -> bool:
-    return True
+    return False
 
 
 @pytest.fixture(scope="module", autouse=False)
-def desired_capabilities(noReset: bool, fullReset: bool, autoLaunch: bool, autoAcceptAlerts:bool, pytestconfig: Config) -> dict:
+def isHeadless() -> bool:
+    return False
+
+
+@pytest.fixture(scope="module", autouse=False)
+def desired_capabilities(noReset: bool, fullReset: bool, autoLaunch: bool, autoAcceptAlerts:bool, isHeadless:bool, pytestconfig: Config) -> dict:
     desired_capabilities = {
         "bundleId": "com.toiletsnakes.Card",
         "app": pytestconfig.option.app,
@@ -75,6 +81,7 @@ def desired_capabilities(noReset: bool, fullReset: bool, autoLaunch: bool, autoA
         "autoLaunch": autoLaunch,
         "autoAcceptAlerts": autoAcceptAlerts,
         "derivedDataPath": pytestconfig.option.derivedDataPath,
+        "isHeadless": isHeadless,
         "processArguments": {
             "args": [
                 "RESET"
